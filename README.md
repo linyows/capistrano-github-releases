@@ -37,6 +37,16 @@ after 'deploy:published', 'github:releases:create'
 after 'deploy:published', 'github:releases:add_comment'
 ```
 
+### GitHub Enterprise
+
+deploy.rb:
+
+```ruby
+Octokit.configure do |c|
+  c.api_endpoint = 'http://your.enterprise.domain/api/v3'
+  c.web_endpoint = 'http://your.enterprise.domain/'
+end
+```
 
 Contributing
 ------------
