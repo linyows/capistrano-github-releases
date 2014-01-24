@@ -6,6 +6,9 @@ Capistrano::Github::Releases
 
 GitHub Releases tasks for Capistrano v3:
 
+    bundle exec cap production github:releases:create # Auto creation by last pull-request
+    bundle exec cap production github:releases:add_comment # Auto comment to last pull-request
+
 Installation
 ------------
 
