@@ -44,8 +44,8 @@ require 'capistrano/github/releases'
 deploy/production.rb:
 
 ```ruby
-after 'deploy:published', 'github:releases:create'
-after 'deploy:published', 'github:releases:add_comment'
+after 'deploy:finishing', 'github:releases:create'
+after 'deploy:finishing', 'github:releases:add_comment'
 ```
 
 ### GitHub Enterprise
