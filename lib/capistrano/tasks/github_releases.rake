@@ -26,15 +26,6 @@ namespace :github do
       Time.now.strftime('release-%Y%m%d-%H%M')
     }
 
-    set :github_username, -> {
-      if ENV['GITHUB_USERNAME'].nil?
-        username = HighLine.new.ask("GitHub Username? [default: #{fetch(:username)}]")
-        Dotenv.add "GITHUB_USERNAME=#{username}"
-      else
-        ENV['GITHUB_USERNAME']
-      end
-    }
-
     set :release_title, -> {
       default_title = nil
 
@@ -102,7 +93,6 @@ namespace :github do
       run_locally do
         begin
           Octokit.configure do |c|
-            c.login = fetch(:github_username)
             c.access_token = fetch(:github_token)
           end
 
