@@ -52,10 +52,10 @@ after 'deploy:finishing', 'github:releases:add_comment'
 
 Set capistrano variables with `set name, value`.
 
-Name            | Default                                          | Description
-----            | -------                                          | -----------
-release_tag     | `Time.now.strftime('release-%Y%m%d-%H%M')`       | Create releases when git-tag name
-release_comment | This pull-request deployed to production and ... | Pull requests to deploy report comment
+Name            | Default                                              | Description
+----            | -------                                              | -----------
+release_tag     | `Time.now.strftime('release-%Y%m%d-%H%M')`           | Create releases when git-tag name
+release_comment | This change was deployed to production :octocat: ... | Pull requests to deploy report comment
 
 ### GitHub Enterprise
 

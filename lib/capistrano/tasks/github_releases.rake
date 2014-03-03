@@ -65,7 +65,7 @@ namespace :github do
       url = "#{fetch(:github_releases_path)}/#{fetch(:release_tag)}"
 
       <<-MD.gsub(/^ {6}/, '').strip
-        I deployed this with production environment and created a release tag. :octocat:
+        This change was deployed to production :octocat:
         #{fetch(:release_title)}: [#{fetch(:release_tag)}](#{url})
       MD
     }
