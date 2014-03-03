@@ -16,6 +16,8 @@ end
 
 namespace :github do
   namespace :releases do
+    set :ask_release, false
+
     set :username, -> {
       username = `git config --get user.name`.strip
       username = `whoami`.strip unless username
@@ -39,15 +41,24 @@ namespace :github do
         end
       end
 
-      title = HighLine.new.ask("Release Title? [default: #{default_title}]")
-      title = default_title if title.empty?
-      title
+      if fetch(:ask_release)
+        title = HighLine.new.ask("Release Title? [default: #{default_title}]")
+        title = default_title if title.empty?
+        title
+      else
+        default_title
+      end
     }
 
     set :release_body, -> {
       pull_req = "pull request: #{fetch(:github_repo)}##{fetch(:pull_request_id)}"
-      body = HighLine.new.ask("Release Comment? [default: #{pull_req}]")
-      "#{body + "\n" unless body.empty?}#{pull_req}"
+
+      if fetch(:ask_release)
+        body = HighLine.new.ask("Release Comment? [default: #{pull_req}]")
+        "#{body + "\n" unless body.empty?}#{pull_req}"
+      else
+        pull_req
+      end
     }
 
     set :pull_request_id, -> {
