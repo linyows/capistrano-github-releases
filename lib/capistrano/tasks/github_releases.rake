@@ -17,15 +17,12 @@ end
 namespace :github do
   namespace :releases do
     set :ask_release, false
+    set :release_tag, -> { Time.now.strftime('release-%Y%m%d-%H%M') }
 
     set :username, -> {
       username = `git config --get user.name`.strip
       username = `whoami`.strip unless username
       username
-    }
-
-    set :release_tag, -> {
-      Time.now.strftime('release-%Y%m%d-%H%M')
     }
 
     set :release_title, -> {
