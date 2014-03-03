@@ -107,7 +107,7 @@ namespace :github do
             c.access_token = fetch(:github_token)
           end
 
-          rate_limit = Octokit.rate_limit
+          rate_limit = Octokit.rate_limit!
           info 'Exceeded limit of the GitHub API request' if rate_limit.remaining.zero?
           debug "#{rate_limit}"
         rescue Octokit::NotFound
