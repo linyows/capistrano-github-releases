@@ -55,7 +55,9 @@ Set capistrano variables with `set name, value`.
 Name            | Default                                              | Description
 ----            | -------                                              | -----------
 ask_release     | false                                                | When true, asks for the release title and text
-release_tag     | `Time.now.strftime('release-%Y%m%d-%H%M')`           | Create releases when git-tag name
+release_tag     | `fetch(:released_at).strftime('%Y%m%d-%H%M%S%z')`    | Create releases when git-tag name
+release_title   | use pull-request title                               | Title of release note
+release_body    | release time and pull-request id                     | Body of release note
 release_comment | This change was deployed to production :octocat: ... | Pull requests to deploy report comment
 
 ### GitHub Enterprise
