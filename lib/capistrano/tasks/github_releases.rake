@@ -49,13 +49,16 @@ namespace :github do
     }
 
     set :release_body, -> {
-      pull_req = "pull request: #{fetch(:github_repo)}##{fetch(:pull_request_id)}"
+      default_body = <<-MD.gsub(/^ {6}/, '').strip
+        released at #{fetch(:released_at).strftime('%Y-%m-%d %H:%M:%S %z')}
+        pull request: #{fetch(:github_repo)}##{fetch(:pull_request_id)}
+      MD
 
       if fetch(:ask_release)
-        body = HighLine.new.ask("Release Comment? [default: #{pull_req}]")
-        "#{body + "\n" unless body.empty?}#{pull_req}"
+        body = HighLine.new.ask("Release Body?")
+        "#{body + "\n" unless body.empty?}#{default_body}"
       else
-        pull_req
+        default_body
       end
     }
 
