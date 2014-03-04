@@ -128,6 +128,7 @@ namespace :github do
             draft: false,
             prerelease: false
           )
+          info "Release of #{fetch(:release_title)} as #{fetch(:release_tag)} to #{fetch(:github_repo)} was created"
         rescue => e
           error e.message
           invoke 'github:git:create_tag_and_push_origin'
@@ -144,6 +145,7 @@ namespace :github do
             fetch(:pull_request_id),
             fetch(:release_comment)
           )
+          info "Comment to #{fetch(:github_repo)}/pull##{fetch(:pull_request_id)} was added"
         rescue => e
           error e.message
         end
