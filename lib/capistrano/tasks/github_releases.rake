@@ -17,7 +17,8 @@ end
 namespace :github do
   namespace :releases do
     set :ask_release, false
-    set :release_tag, -> { Time.now.strftime('release-%Y%m%d-%H%M') }
+    set :released_at, -> { Time.now }
+    set :release_tag, -> { fetch(:released_at).strftime('%Y%m%d-%H%M%S%z') }
 
     set :username, -> {
       username = `git config --get user.name`.strip
