@@ -93,7 +93,7 @@ namespace :github do
 
     set :github_repo, -> {
       repo = "#{fetch(:repo_url)}"
-      repo.match(/([\w-]+\/[\w-]+)\.git$/)[1]
+      repo.match(/([\w\-]+\/[\w\-\.]+)\.git$/)[1]
     }
 
     set :github_releases_path, -> {
