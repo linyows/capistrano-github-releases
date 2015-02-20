@@ -8,7 +8,7 @@ $ bundle exec cap production github:releases:create # Auto creation by last pull
 $ bundle exec cap production github:releases:add_comment # Auto comment to last pull-request
 ```
 
-[![Gem Version](https://badge.fury.io/rb/capistrano-github-releases.png)][gem]
+[![Gem version](https://img.shields.io/gem/v/capistrano-github-releases.svg?style=flat-square)][gem]
 [gem]: https://rubygems.org/gems/capistrano-github-releases
 
 Installation
