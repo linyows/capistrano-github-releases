@@ -58,7 +58,7 @@ namespace :github do
         body = HighLine.new.ask("Release Body?") do |q|
           q.gather = ''
         end
-        "#{body.join("\n") + "\n" unless body.empty?}#{default_body}"
+        "#{body.join("\n") + "\n" unless body.empty?}\n#{default_body}"
       else
         default_body
       end
