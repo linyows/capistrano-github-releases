@@ -55,13 +55,19 @@ namespace :github do
       MD
 
       if fetch(:ask_release)
-        body = HighLine.new.ask("Release Body?")
-        "#{body + "\n" unless body.empty?}#{default_body}"
+        body = HighLine.new.ask("Release Body?") do |q|
+          q.gather = ''
+        end
+        "#{body.join("\n") + "\n" unless body.empty?}#{default_body}"
       else
         default_body
       end
     }
 
+    grades = ask( "Enter test scores (or a blank line to quit):",
+                  lambda { |ans| ans =~ /^-?\d+$/ ? Integer(ans) : ans} ) do |q|
+      q.gather = ""
+    end
     set :pull_request_id, -> {
       id = nil
 
