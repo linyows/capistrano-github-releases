@@ -63,7 +63,7 @@ namespace :github do
         default_body
       end
     }
-    
+
     set :pull_request_id, -> {
       id = nil
 
