@@ -63,11 +63,7 @@ namespace :github do
         default_body
       end
     }
-
-    grades = ask( "Enter test scores (or a blank line to quit):",
-                  lambda { |ans| ans =~ /^-?\d+$/ ? Integer(ans) : ans} ) do |q|
-      q.gather = ""
-    end
+    
     set :pull_request_id, -> {
       id = nil
 
