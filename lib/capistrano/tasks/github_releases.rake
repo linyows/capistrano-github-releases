@@ -155,6 +155,21 @@ namespace :github do
         end
       end
     end
+
+    desc 'Remove all labels of the pull request'
+    task remove_labels: :authentication do
+      run_locally do
+        begin
+          Octokit.remove_all_labels(
+            fetch(:github_repo),
+            fetch(:pull_request_id)
+          )
+          info "Labels of #{fetch(:github_repo)}/pull##{fetch(:pull_request_id)} was removed"
+        rescue => e
+          error e.message
+        end
+      end
+    end
   end
 
   namespace :git do
