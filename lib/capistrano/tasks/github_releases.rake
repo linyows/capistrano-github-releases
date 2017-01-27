@@ -55,8 +55,10 @@ namespace :github do
       MD
 
       if fetch(:ask_release)
-        body = HighLine.new.ask("Release Body?")
-        "#{body + "\n" unless body.empty?}#{default_body}"
+        body = HighLine.new.ask("Release Body?") do |q|
+          q.gather = ''
+        end
+        "#{body.join("\n") + "\n" unless body.empty?}\n#{default_body}"
       else
         default_body
       end
