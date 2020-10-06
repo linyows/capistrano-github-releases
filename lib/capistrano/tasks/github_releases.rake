@@ -130,7 +130,7 @@ namespace :github do
             fetch(:release_tag),
             name: fetch(:release_title),
             body: fetch(:release_body),
-            target_commitish: 'master',
+            target_commitish: fetch(:branch, 'master'),
             draft: false,
             prerelease: false
           )
